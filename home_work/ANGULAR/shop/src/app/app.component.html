@@ -1,0 +1,10 @@
+
+<router-outlet>
+      <h1>My Shop</h1>
+      <nav>
+          <ul>
+              <li><a routerLink="/products" routerLinkActive="active">Products</a></li>
+              <li><a routerLink="/cart" routerLinkActive="active">Cart ( {{getAmount()}} )</a></li>
+          </ul>
+      </nav>
+  </router-outlet>

@@ -1,0 +1,8 @@
+  <li>
+    <button (click)="remove2()">X</button>
+    <span [ngStyle]="{'display' : !showme ? 'initial' : 'none'}">{{ item }}</span>
+    <input type="text" [(ngModel)]="item" [ngStyle]="{'display' : showme ? 'initial' : 'none'}">
+    <button (click)="edit()" [ngStyle]="{'display' : !showme ? 'initial' : 'none'}">Edit</button>
+    <button (click)="apply2()" [ngStyle]="{'display' : showme ? 'initial' : 'none'}" >Apply</button>
+  </li>
+

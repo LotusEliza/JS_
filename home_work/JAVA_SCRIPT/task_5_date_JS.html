@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <!-- 1 Что такое Date
+        2 Узнать текущий день месяца
+        3 Узнать текущий номер месяца
+        4 Узнать текущий год -->
+        <!-- 5 Узнать количество дней в текущем месяце
+        6 Узнать день недели
+        7 Установить новую дату
+        8 Узнать количество дней в след. месяце
+        9 Узнать кол. дней в пред. месяце
+        10 Вывести Название месяца
+        11 Вывести Название дня недели -->
+        <!-- 12 Узнать количество недель в месяце -->
+   <script>
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+    var d = new Date();
+    var day = d.getDate();
+    var month = d.getMonth();
+    var year = d.getFullYear();
+    var day_name = days[d.getDay()];
+    var days_in_month = daysInMonth(month, year);
+    var days_in_next =  daysInMonth(month+1, year);
+    var days_in_prev =  daysInMonth(month-1, year);
+    var month_name = monthNames[d.getMonth()];
+    var new_date = new Date(2018, 11, 24, 10, 33, 30, 0);
+    var weeks = getWeeksInMonth(3, 2019);
+    
+    function daysInMonth (month, year) {
+    return new Date(year, month, 0).getDate();
+    }
+
+    function getWeeksInMonth(month, year){
+        var weeks=[],
+        firstDate=new Date(year, month, 1),
+        lastDate=new Date(year, month+1, 0), 
+        numDays= lastDate.getDate();
+    
+        var start=1;
+        var end=7-firstDate.getDay();
+        while(start<=numDays){
+            weeks.push({start:start,end:end});
+            start = end + 1;
+            end = end + 7;
+            if(end>numDays)
+                end=numDays;    
+       }        
+        return weeks;
+    }   
+    
+       console.log(day);
+       console.log(month);
+       console.log(year);
+       console.log(days_in_month);
+       console.log(new_date);
+       console.log(days_in_next);
+       console.log(days_in_prev);
+       console.log(month_name);
+       console.log(day_name);
+       console.log(weeks);
+
+    </script>
+</body>
+</html>

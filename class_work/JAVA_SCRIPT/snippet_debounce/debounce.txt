@@ -1,0 +1,33 @@
+var debounce = (function(){
+    var timeout;
+    var counter = 0;
+    return function() {
+        clearTimeout(timeout);
+        timeout = setTimeout(function() {
+            console.log(counter++);
+        }, 300);
+        return;
+    }
+}());
+
+
+debounce();
+debounce();
+debounce();
+
+
+setTimeout(function(){ 
+    debounce(); 
+}, 100);
+var once = (function(){
+    var runned = false;
+    return function() {
+        if (runned) {
+            return;
+        }
+
+        runned = true;
+
+        console.log('Once runned');
+    }
+}());

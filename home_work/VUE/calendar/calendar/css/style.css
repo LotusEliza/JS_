@@ -1,0 +1,81 @@
+
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: var(--white);
+  color: var(--black);
+  display: flex;
+  justify-content: center;
+}
+
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  width: 500px;
+  background-color: #FCEFB8;
+}
+.calendar > .header {
+  padding: .75rem;
+  font-size: 1.25rem;
+  grid-column: 1 / span 7;
+}
+
+.calendar > .header button {
+  border: none;
+  background-color: #FCEFB8;
+  margin: 0 1rem;
+  padding: .25rem .5rem;
+}
+
+.calendar > * {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.calendar > .day {
+  color: grey;
+  font-size: 1rem;
+}
+
+.calendar > .day.current {
+  color: var(--black);
+}
+
+.calendar > .day.current.today {
+  background-color: #FCCDB8;
+}
+
+.calendar > .day.weekend {
+ background-color: #E7FCB8;
+}
+
+.calendar > .day::before {
+  content: "";
+  display: inline-block;
+  height: 0;
+  padding-bottom: 100%;
+  width: 1px;
+}
+
+.calendar > .day button {
+  color: inherit;
+  background: transparent;
+  border: none;
+  height: 100%;
+  width: 100%;
+}
+
+.text-center {
+  text-align: center;
+}

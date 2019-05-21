@@ -1,0 +1,14 @@
+    <div id="cart">
+        <ul>
+            <ng-container *ngFor="let item of cart; let i = index;">
+                <div *ngIf="!item; else elseBlock"></div>
+                <ng-template #elseBlock>
+                    <li>
+                        {{ products[i].name }} x {{ item }} = ${{ products[i].price * item}}
+                        <button type="button" (click)="remove(i)">Remove</button>
+                    </li>
+                </ng-template>
+            </ng-container>
+        </ul>
+         <strong>Total: </strong>{{ total() }}
+    </div>

@@ -1,0 +1,35 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'start' ]
+2 info using npm@3.5.2
+3 info using node@v8.10.0
+4 verbose run-script [ 'prestart', 'start', 'poststart' ]
+5 info lifecycle node_js@1.0.0~prestart: node_js@1.0.0
+6 silly lifecycle node_js@1.0.0~prestart: no script for prestart, continuing
+7 info lifecycle node_js@1.0.0~start: node_js@1.0.0
+8 verbose lifecycle node_js@1.0.0~start: unsafe-perm in lifecycle true
+9 verbose lifecycle node_js@1.0.0~start: PATH: /usr/share/npm/bin/node-gyp-bin:/home/lotus/Desktop/JS/js_task/class_work/NODE_JS/project1/node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+10 verbose lifecycle node_js@1.0.0~start: CWD: /home/lotus/Desktop/JS/js_task/class_work/NODE_JS/project1
+11 silly lifecycle node_js@1.0.0~start: Args: [ '-c', 'node index.js' ]
+12 verbose stack Error: spawn E2BIG
+12 verbose stack     at _errnoException (util.js:1022:11)
+12 verbose stack     at ChildProcess.spawn (internal/child_process.js:323:11)
+12 verbose stack     at exports.spawn (child_process.js:502:9)
+12 verbose stack     at spawn (/usr/share/npm/lib/utils/spawn.js:7:13)
+12 verbose stack     at runCmd_ (/usr/share/npm/lib/utils/lifecycle.js:224:14)
+12 verbose stack     at runCmd (/usr/share/npm/lib/utils/lifecycle.js:183:5)
+12 verbose stack     at runPackageLifecycle (/usr/share/npm/lib/utils/lifecycle.js:147:3)
+12 verbose stack     at Array.<anonymous> (/usr/share/npm/node_modules/slide/lib/bind-actor.js:15:8)
+12 verbose stack     at LOOP (/usr/share/npm/node_modules/slide/lib/chain.js:15:14)
+12 verbose stack     at chain (/usr/share/npm/node_modules/slide/lib/chain.js:20:5)
+13 verbose cwd /home/lotus/Desktop/JS/js_task/class_work/NODE_JS/project1
+14 error Linux 4.15.0-47-generic
+15 error argv "/usr/bin/node" "/usr/bin/npm" "start"
+16 error node v8.10.0
+17 error npm  v3.5.2
+18 error code E2BIG
+19 error errno E2BIG
+20 error syscall spawn
+21 error spawn E2BIG
+22 error If you need help, you may report this error at:
+22 error     <https://github.com/npm/npm/issues>
+23 verbose exit [ 1, true ]

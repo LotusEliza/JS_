@@ -1,0 +1,20 @@
+var debounce =  function(my_callback, time) {
+    var timeout;
+    return function() {
+        clearTimeout(timeout);//sbrocilos vremia
+        timeout = setTimeout(my_callback, time);   //vremia 5 sec 
+    }
+};
+
+var HelloFn = function(){
+    console.log('hello world')
+}
+
+var HelloOnce = debounce(HelloFn, 50);
+
+HelloOnce();//udalili timeout i zapustili sleduushuu func (vremia ne proshlo)
+HelloOnce();//udalili timeout i zapustili sleduushuu func (vremia ne proshlo)
+HelloOnce();//udalili timeout i zapustili sleduushuu func (vremia proshlo)
+
+
+setTimeout(function(){HelloOnce();}, 4000);// v poslednem vizove function callback vremiay plusuetsia 4000+50 (timeout v timeoute

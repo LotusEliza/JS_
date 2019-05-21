@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .todo {
+            width: 500px;
+            border: 1px solid lightgrey;
+            border-radius: 10px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        .todo h1 {
+            text-align: center;
+        }
+
+        .todo .item-text {
+            display: inline-block;
+            width: 300px;
+        }
+
+        .todo .edit-input {
+            display: inline-block;
+            width: 296px;
+        }
+
+    </style>
+    <div class="todo" id="todo">
+        <h1>Todo List</h1>
+        <ul class="todo-list js_todo_list">
+
+        </ul>
+        <div class="add-section">
+            <input type="text" class="js_add_input">
+            <button type="button" class="js_add_button">Add</button>
+        </div>
+    </div>
+   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+   
+    <script>
+        (function($){
+            $(function() {
+                console.time('Native');
+                var $dom = $('#todo');
+                var $list = $dom.find('.js_todo_list');
+                var $add_input = $dom.find('.js_add_input');
+                var $add_button = $dom.find('.js_add_button');
+                var todo_arr = JSON.parse(localStorage.todo || '[]');
+
+                var add_action = function() {
+                    console.time('Native add');
+                    var new_todo = $add_input.val();
+                    todo_arr.push(new_todo);
+                    var li_html = render_li(new_todo);
+                    $list.append(li_html);
+                    $add_input.val('');
+                    console.timeEnd('Native add');
+                    save();
+                }
+
+                var render_li = function (data) {
+                    return '<li>' + 
+                        '<span class="item-text js_item_text">' + data + '</span>' +
+                        '<input type="text" class="edit-input js_edit_input" value="' + data + '" style="display: none;">' +
+                        '<button type="button" class="js_remove_button">X</button>' +
+                        '<button type="button" class="js_edit_button">Edit</button>' +
+                        '<button type="button" class="js_apply_edit_button" style="display: none;">Apply</button>' +
+                    '</li>';
+                }
+
+                var todo_arr_html = todo_arr.map(function(element) {
+                    return render_li(element);
+                });
+
+                $list.append(todo_arr_html.join(''));
+
+                var save = function() {
+                    localStorage.todo = JSON.stringify(todo_arr);
+                }
+                
+                $add_button.on('click.todo.add', add_action);
+                
+                $add_input.on('keyup', function(event) {
+                    if (event.keyCode === 13) {
+                        add_action();
+                    }
+                });
+
+                $list.on('click.todo.remove', '.js_remove_button', function() {
+                    var $li = $(this).parent('li');
+                    var index = $li.index();
+                    todo_arr.splice(index, 1);
+                    $li.remove();
+                    save();
+                });
+
+                $list.on('click.todo.edit', '.js_edit_button', function() {
+                    var $li = $(this).parent('li');
+                    $(this).hide();
+                    $li.find('.js_apply_edit_button').show();
+                    $li.find('.js_edit_input').show();
+                    $li.find('.js_item_text').hide();
+                });
+
+                $list.on('click.todo.apply', '.js_apply_edit_button', function() {
+                    var $li = $(this).parent('li');
+                    var index = $li.index();
+                    var $edit_input = $li.find('.js_edit_input');
+                    var value = $edit_input.val();
+
+                    todo_arr[index] = value;
+                    $(this).hide();
+                    $li.find('.js_edit_button').show();
+                    $li.find('.js_edit_input').hide();
+                    $li.find('.js_item_text').text(value);
+                    $li.find('.js_item_text').show();
+                    save();
+                });
+                console.timeEnd('Native');
+            })
+        }(jQuery));
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+import Vue from 'vue'
+import Router from 'vue-router'
+import HelloWorld from '@/components/HelloWorld'
+import Page404 from '@/components/Page404.vue'
+import Shop from '@/components/Shop'
+import Products from '@/components/Products'
+import Cart from '@/components/Cart'
+
+Vue.use(Router)
+
+export default new Router({
+  mode: 'history',
+  routes: [
+    {
+      path: '/',
+      name: 'HelloWorld',
+      component: HelloWorld
+    },
+    {
+      path: '*',
+      name: 'Page404',
+      component: Page404
+    },
+    {
+      path: '/shop',
+      name: 'shop',
+      component: Shop
+    },
+    {
+      path: '/products',
+      name: 'products',
+      component: Products
+    },
+    {
+      path: '/cart',
+      name: 'cart',
+      component: Cart
+    }
+  ]
+})

@@ -1,0 +1,18 @@
+var once = (function(){
+    var runned = false;
+    return function() {
+        if (runned) { //perviy raz popadaet suda i smotrit chto runned = false, vihodit i prodoljaet consol log
+             console.log('Second');
+            return;
+        }
+
+        runned = true; //odin raz budet funczia t.k. runned = true i 
+
+        console.log('Once runned');
+    }
+}());
+
+once();
+once();
+once();
+once();

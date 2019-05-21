@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    [v-cloak] {display: none};
+    </style>
+</head>
+<body>
+    <div id="app" v-cloak>
+        <ul>
+            <li v-for="(item, key) in todo" :key="key" >
+                <button type="button" @click="remove(key, $event)">X</button>
+                <span  v-show="visible !== key">{{ item }}</span> 
+                <input  id="text" v-model="message2" v-show="visible === key">
+                <button type="button"  @click="edit(key, $event)" v-show="visible !== key">edit</button>
+                <button type="button" @click="app(key, $event)" v-show="visible === key">apply</button>
+            </li>
+        </ul>
+        <div>
+              {{ count_items }}
+        </div>
+        <div>
+            <input type="text" v-model="message">
+            <button type="button" @click="add">Add</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data: function() {
+                return {
+                    message: '',
+                    message2: '',
+                    todo: JSON.parse(localStorage.todo || '[]'),
+                    visible: false,
+                    edit_visible: true,
+                }
+            },
+            methods: {
+                add: function() {
+                    this.todo.push(this.message);
+                    this.message = '';
+                },
+                remove: function(key, e) {
+                    this.todo.splice(key, 1);
+                },
+                edit: function(key) {
+                    this.visible = key;
+                    this.message2 = this.todo[key];
+                },
+                app: function() {
+                    this.$set(this.todo, this.visible, this.message2);
+                    // this.todo[this.visible] = this.message2;
+                    this.visible = false;
+                    // this.todo.push(this.message2);
+                    // this.message = '';
+                },
+            },
+            computed: {
+                count_items: function() {
+                    return this.todo.length;
+                }
+            },
+            watch: {
+                todo: function(newVal) {
+                    localStorage.todo = JSON.stringify(newVal);
+                },
+                // message: function(a, b) {
+                //     console.log('new', a);
+                //     console.log('old', b);
+                // }
+            }
+        });
+    </script>
+</body>
+</html>
